@@ -5,6 +5,6 @@ df = pd.read_csv("neko.txt.mecab", header=None, sep='\t|,', usecols=[
 
 df_new = df[df["surface"] != "EOS"]
 
-l = df_new.to_dict(orient='records')
+df = df_new[df["pos"] == "動詞"]
 
-print(l)
+print(set(df["surface"].to_list()))
