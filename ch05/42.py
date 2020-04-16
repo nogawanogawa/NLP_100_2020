@@ -70,6 +70,12 @@ with open('./neko.txt.cabocha') as f:
             sentences.append(chunks)
             chunks = []
 
-for i, chunk in enumerate(sentences[8]):
-    print('{}: {}, 係り先:{}, 係り元:{}'.format(
-        i, chunk.phrase, chunk.dst, chunk.srcs))
+for si, sentence in enumerate(sentences):
+    print('-----', si, '-----')
+    for ci, chunk in enumerate(sentence):
+        if chunk.dst != -1 and chunk.morphs[0].pos != "記号":
+            print('{}:{}\t{}'.format(
+                ci, chunk.phrase, sentence[chunk.dst].phrase))
+
+    if si > 3:
+        break
